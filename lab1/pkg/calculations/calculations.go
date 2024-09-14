@@ -12,9 +12,14 @@ type Calculator struct {
 	delta float32
 }
 
-func (c Calculator) getExtremumPoints() []float32 {
-	switch d := getDiscriminant(c.a, c.b) {
+func (calc Calculator) p(x float32) float32 {
+	return math.Pow(x, 3) + calc.a * math.Pow(x, 2) + calc.b * x + calc.c
+}
+
+func (calc Calculator) getExtremumPoints() []float32 {
+	switch d := getDiscriminant(calc.a, calc.b) {
 	case d < 0:
+		return nil
 	case d == 0:
 	case d > 0:
 	}
