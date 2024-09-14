@@ -1,39 +1,45 @@
 package calculations
 
 import (
+	"fmt"
 	"math"
 )
 
 type Calculator struct {
-	a float32
-	b float32
-	c float32
-	epsilon float32
-	delta float32
+	A float64
+	B float64
+	C float64
+	Epsilon float64
+	Delta float64
 }
 
-func (calc Calculator) p(x float32) float32 {
-	return math.Pow(x, 3) + calc.a * math.Pow(x, 2) + calc.b * x + calc.c
+func (calc Calculator) FindRoots() {
+	fmt.Println(calc.A, calc.B, calc.C, calc.Epsilon, calc.Delta)
 }
 
-func (calc Calculator) getExtremumPoints() []float32 {
-	switch d := getDiscriminant(calc.a, calc.b) {
-	case d < 0:
+func (calc Calculator) p(x float64) float64 {
+	return math.Pow(x, 3) + calc.A * math.Pow(x, 2) + calc.B * x + calc.C
+}
+
+func (calc Calculator) getExtremumPoints() []float64 {
+	switch d := getDiscriminant(calc.A, calc.B, calc.C); {
+	case d < 0.0:
 		return nil
-	case d == 0:
-	case d > 0:
+	case d == 0.0:
+	case d > 0.0:
 	}
+	return nil
 }
 
-func getDiscriminant(a, b float32) float32 {
-	var new_a, new_b, new_c float32
-	var discriminant float32
+func getDiscriminant(a, b, c float64) float64 {
+	var discriminant float64
 
-	new_a = 3
-	new_b = 2 * a
-	new_c = b
-	
-	discriminant = math.Pow(new_b, 2) - 4 * new_a * new_c
+	discriminant = math.Pow(b, 2) - 4 * a * c
 	
 	return discriminant
+}
+
+func getDerivative(order int32, coefficients []float64) []float64 {
+	
+	return nil
 }
