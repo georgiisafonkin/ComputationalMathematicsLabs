@@ -12,7 +12,7 @@ public class QuadraticEquationSolver implements IEquationSolver{
     @Override
     public List<Double> solveEquation(IPolynomial p) {
         double discriminant = discriminantFinder.findDiscriminant(p);
-
+        System.out.println("solving quadratic equation...");
         List<Double> roots;
         if (discriminant > 0) {
             roots = new ArrayList<>(2);

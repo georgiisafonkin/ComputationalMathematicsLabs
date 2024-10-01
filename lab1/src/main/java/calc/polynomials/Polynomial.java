@@ -20,12 +20,12 @@ public class Polynomial implements IPolynomial{
     }
 
     @Override
-    public double calcValue(float x) {
-        float value = 0;
-        int i = 0;
+    public double calcValue(double x) {
+        double value = 0;
         int j = order;
         for (double c: coefficients) {
-            value += coefficients.get(i++) * Math.pow(x, j--);
+            value += c * Math.pow(x, j);
+            --j;
         }
         return value;
     }
