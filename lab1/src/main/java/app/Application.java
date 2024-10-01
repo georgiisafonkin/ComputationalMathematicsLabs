@@ -36,16 +36,18 @@ public class Application {
         System.out.println("here\n");
 
         IPolynomial polynomial = new Polynomial(3, Arrays.asList(a,b,c,d));
-        IRootMultiplicityFinder multiplicityFinder = new RootMultiplicityFinder(polynomial);
+        IRootMultiplicityFinder multiplicityFinder = new RootMultiplicityFinder(polynomial, epsilon);
         IExtremePointsFinder extremePointsFinder = new ExtremePointsFinder();
         List<Double> extremePoints = extremePointsFinder.findExtremePoints(polynomial);
         IRootSeeker rootSeeker = new RootSeeker(polynomial, epsilon, delta);
-        List<Double> roots;
+        List<Double> roots = null;
         //TODO finish algorithm
         if (extremePoints == null) {
             roots = Arrays.asList(rootSeeker.findRootIfNoExtremum());
-        } else {
-            roots = rootSeeker.findRootsWithExtremum(extremePoints);
+        }else if (extremePoints.toArray().length == 1) {
+            roots = Arrays.asList(rootSeeker.findRootWithSingleExtremum(extremePoints));
+        } else if (extremePoints.toArray().length == 2) {
+            roots = rootSeeker.findRootsWithExtremums(extremePoints);
         }
         System.out.println("done!");
         printRootsWithMultiplicity(roots, multiplicityFinder);

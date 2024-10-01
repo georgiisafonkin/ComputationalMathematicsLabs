@@ -49,7 +49,7 @@ public class RootSeeker implements IRootSeeker {
     }
 
     @Override
-    public List<Double> findRootsWithExtremum(List<Double> extremums) {
+    public List<Double> findRootsWithExtremums(List<Double> extremums) {
         System.out.println("in findRootsWithExtremum...");
         double alpha = extremums.get(0);
         double beta = extremums.get(1);
@@ -79,6 +79,19 @@ public class RootSeeker implements IRootSeeker {
             rv.add((alpha + beta)/2);
         }
         return rv;
+    }
+
+    @Override
+    public double findRootWithSingleExtremum(List<Double> extremums) {
+        double extremum = extremums.get(0);
+        if (!(Math.abs(p.calcValue(extremum)) < epsilon)) {
+            if (p.calcValue(extremum) < -epsilon) {
+                return seekRootOnTheRight(0.0);
+            } else if (p.calcValue(extremum) > epsilon) {
+                return seekRootOnTheLeft(0.0);
+            }
+        }
+        return extremum;
     }
 
     @Override

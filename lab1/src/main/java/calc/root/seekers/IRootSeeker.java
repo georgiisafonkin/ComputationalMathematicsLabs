@@ -6,6 +6,7 @@ public interface IRootSeeker {
     double seekRootOnTheLeft(double rightEdge);
     double seekRootOnTheRight(double leftEdge);
     double findRootIfNoExtremum();
-    List<Double> findRootsWithExtremum(List<Double> extremums);
+    List<Double> findRootsWithExtremums(List<Double> extremums);
+    double findRootWithSingleExtremum(List<Double> extremums);
     double seekRootBetween(double leftEdge, double rightEdge);
 }
